@@ -28,10 +28,12 @@ public class ArrayList1 implements List1 {
                 array[i] = name;
                 fillingArray++;
                 return;
-            } else if (array[array.length-1] != null){
-                String[] temp = array;
-                this.array = new String[temp.length * 2];
-                System.arraycopy(temp, 0, array, 0, temp.length);
+            } else {
+                if (array[array.length - 1] != null) {
+                    String[] temp = array;
+                    this.array = new String[temp.length * 2];
+                    System.arraycopy(temp, 0, array, 0, temp.length);
+                }
             }
         }
     }
