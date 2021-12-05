@@ -5,10 +5,10 @@ import java.util.Arrays;
 public class ArrayList1 implements List1 {
 
     private String[] array;
+    private int fillingArray;
 
     public ArrayList1() {
         this.array = new String[10];
-        Arrays.fill(array, "1");
     }
 
     /**
@@ -16,7 +16,6 @@ public class ArrayList1 implements List1 {
      */
     public ArrayList1(int size) {
         this.array = new String[size];
-        Arrays.fill(array, "1");
     }
 
     /**
@@ -24,18 +23,27 @@ public class ArrayList1 implements List1 {
      */
     @Override
     public void add(String name) {
-        String[] temp = array;
-        this.array = new String[temp.length + 1];
-        System.arraycopy(temp, 0, array, 0, temp.length);
-        array[array.length - 1] = name;
+        // сделать проверки, если массив полон, увеличить его в двое (не исп увеличение массива на +1)
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                array[i] = name;
+                fillingArray++;
+                return;
+            } else if (array[array.length-1] != null){
+                String[] temp = array;
+                this.array = new String[temp.length * 2];
+                System.arraycopy(temp, 0, array, 0, temp.length);
+            }
+        }
     }
 
     @Override
-    public void delete(int index) {
+    public void remove(int index) {
         String[] temp = array;
         this.array = new String[temp.length - 1];
         System.arraycopy(temp, 0, array, 0, index);
         System.arraycopy(temp, index + 1, array, index, array.length - 1);
+        fillingArray--;
     }
 
     /**
@@ -52,15 +60,21 @@ public class ArrayList1 implements List1 {
      */
     @Override
     public int size() {
-        return array.length;
+        return fillingArray;
     }
 
     /**
      * @param index
-     * @param name -
+     * @param name  -
      */
     @Override
     public void set(int index, String name) {
         array[index] = name;
+    }
+
+    public void print() {
+        for (String s : array) {
+            System.out.println(s);
+        }
     }
 }
