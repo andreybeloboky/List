@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 
 public class ArrayList1 implements List1 {
 
@@ -12,14 +11,14 @@ public class ArrayList1 implements List1 {
     }
 
     /**
-     * @param size
+     * @param size - the size is entered by the user
      */
     public ArrayList1(int size) {
         this.array = new String[size];
     }
 
     /**
-     * @param name
+     * @param name - the name is entered by the user;
      */
     @Override
     public void add(String name) {
@@ -47,8 +46,8 @@ public class ArrayList1 implements List1 {
     }
 
     /**
-     * @param index
-     * @return
+     * @param index - the index is entered by the user.
+     * @return - inside in the index.
      */
     @Override
     public String get(int index) {
@@ -56,7 +55,7 @@ public class ArrayList1 implements List1 {
     }
 
     /**
-     * @return
+     * @return - number of filled elements;
      */
     @Override
     public int size() {
@@ -64,8 +63,8 @@ public class ArrayList1 implements List1 {
     }
 
     /**
-     * @param index
-     * @param name  -
+     * @param index - the index to be changed
+     * @param name  - the element to be replaced;
      */
     @Override
     public void set(int index, String name) {
