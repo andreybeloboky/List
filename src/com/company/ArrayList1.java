@@ -40,10 +40,21 @@ public class ArrayList1 implements List1 {
 
     @Override
     public void remove(int index) {
-        String[] temp = array;
-        this.array = new String[temp.length - 1];
-        System.arraycopy(temp, 0, array, 0, index);
-        System.arraycopy(temp, index + 1, array, index, array.length - 1);
+        for (int i = index; i < array.length - 1; i++) {
+            array[index] = array[index + 1];
+            index++;
+        }
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                count++;
+                if (count > 10) {
+                    String[]temp = array;
+                    this.array = new String[array.length / 2];
+                    System.arraycopy(temp, 0, array, 0, array.length);
+                }
+            }
+        }
         fillingArray--;
     }
 
