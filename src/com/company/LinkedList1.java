@@ -22,7 +22,7 @@ public class LinkedList1 implements List1 {
     }
 
     /**
-     * @param data
+     * @param data - the data is entered by the user;
      */
     @Override
     public void add(String data) {
@@ -40,7 +40,7 @@ public class LinkedList1 implements List1 {
     }
 
     /**
-     * @param index
+     * @param index - this index is need remove;
      */
     @Override
     public void remove(int index) {
@@ -62,8 +62,8 @@ public class LinkedList1 implements List1 {
     }
 
     /**
-     * @param index
-     * @return
+     * @param index - the index is entered by the user.
+     * @return - inside in the index.
      */
     @Override
     public String get(int index) {
@@ -82,14 +82,17 @@ public class LinkedList1 implements List1 {
         return null;
     }
 
+    /**
+     * @return - number of filled elements;
+     */
     @Override
     public int size() {
         return size;
     }
 
     /**
-     * @param index
-     * @param data
+     * @param index - the index to be changed;
+     * @param data  -  the element to be replaced;
      */
     @Override
     public void set(int index, String data) {

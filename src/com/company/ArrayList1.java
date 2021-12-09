@@ -38,6 +38,9 @@ public class ArrayList1 implements List1 {
         }
     }
 
+    /**
+     * @param index
+     */
     @Override
     public void remove(int index) {
         for (int i = index; i < array.length - 1; i++) {
@@ -49,7 +52,7 @@ public class ArrayList1 implements List1 {
             if (array[i] == null) {
                 count++;
                 if (count > 10) {
-                    String[]temp = array;
+                    String[] temp = array;
                     this.array = new String[array.length / 2];
                     System.arraycopy(temp, 0, array, 0, array.length);
                 }
@@ -77,11 +80,11 @@ public class ArrayList1 implements List1 {
 
     /**
      * @param index - the index to be changed
-     * @param name  - the element to be replaced;
+     * @param data  - the element to be replaced;
      */
     @Override
-    public void set(int index, String name) {
-        array[index] = name;
+    public void set(int index, String data) {
+        array[index] = data;
     }
 
     public void print() {
