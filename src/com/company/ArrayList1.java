@@ -18,14 +18,14 @@ public class ArrayList1 implements List1 {
     }
 
     /**
-     * @param name - the name is entered by the user;
+     * @param data - the data is entered by the user;
      */
     @Override
-    public void add(String name) {
+    public void add(String data) {
         // сделать проверки, если массив полон, увеличить его в двое (не исп увеличение массива на +1)
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {
-                array[i] = name;
+                array[i] = data;
                 fillingArray++;
                 return;
             } else {

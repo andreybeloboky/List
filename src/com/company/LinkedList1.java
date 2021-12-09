@@ -2,66 +2,113 @@ package com.company;
 
 public class LinkedList1 implements List1 {
 
-    private LinkList head;
-    private LinkList last;
+    private Node head;
+    private int size;
 
 
     public LinkedList1() {
         this.head = null;
+        this.size = 0;
     }
 
-    private class LinkList {
-        String value;
-        LinkList next;
-        int index;
+    private class Node {
+        private String value;
+        private Node next;
 
-        private LinkList(String value) {
+        private Node(String value) {
             this.value = value;
             next = null;
         }
     }
 
+    /**
+     * @param data
+     */
     @Override
     public void add(String data) {
-        LinkList newNode = new LinkList(data);
-        last.next = newNode;
+        Node newNode = new Node(data);
+        Node current = head;
+        if (head == null) {
+            head = newNode;
+        } else {
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        size++;
     }
 
+    /**
+     * @param index
+     */
     @Override
     public void remove(int index) {
-        LinkList currentNode = head;
-        LinkList previous = null;
+        Node currentNode = head;
+        Node previous = null;
+        int indexValue = 0;
         while (currentNode.next != null) {
-
-           // if (currentNode.value == head) {
+            if (indexValue == index) {
                 if (currentNode == head) {
-                    head = head.next;
+                    head = currentNode.next;
                 } else {
                     previous.next = currentNode.next;
                 }
             }
             previous = currentNode;
             currentNode = currentNode.next;
+            indexValue++;
         }
-   // }
+    }
 
+    /**
+     * @param index
+     * @return
+     */
     @Override
     public String get(int index) {
+        Node currentNode = head;
+        int indexValue = 0;
+        while (currentNode.next != null) {
+            if (indexValue == index) {
+                return currentNode.value;
+            }
+            currentNode = currentNode.next;
+            indexValue++;
+        }
+        if (indexValue == index) {
+            return currentNode.value;
+        }
         return null;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
+    /**
+     * @param index
+     * @param data
+     */
     @Override
-    public void set(int index, String e) {
-
+    public void set(int index, String data) {
+        Node currentNode = head;
+        int indexValue = 0;
+        while (currentNode.next != null) {
+            if (indexValue == index) {
+                currentNode.value = data;
+            }
+            currentNode = currentNode.next;
+            indexValue++;
+        }
+        if (indexValue == index) {
+            currentNode.value = data;
+        }
     }
 
     public void print() {
-        LinkList newNode = head;
+        Node newNode = head;
 
         while (newNode != null) {
             System.out.println(newNode.value);
