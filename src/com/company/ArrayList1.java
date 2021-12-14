@@ -4,7 +4,7 @@ package com.company;
 public class ArrayList1 implements List1 {
 
     private String[] array;
-    private int fillingArray;
+    private int listSize = 0;
 
     public ArrayList1() {
         this.array = new String[10];
@@ -22,43 +22,26 @@ public class ArrayList1 implements List1 {
      */
     @Override
     public void add(String data) {
-        // сделать проверки, если массив полон, увеличить его в двое (не исп увеличение массива на +1)
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
-                array[i] = data;
-                fillingArray++;
-                return;
-            } else {
-                if (array[array.length - 1] != null) {
-                    String[] temp = array;
-                    this.array = new String[temp.length * 2];
-                    System.arraycopy(temp, 0, array, 0, temp.length);
-                }
-            }
+        if (listSize == array.length) {
+            createNewArray();
         }
+        array[listSize] = data;
+        listSize++;
     }
 
     /**
-     * @param index
+     * @param index - who needs remove;
      */
     @Override
     public void remove(int index) {
-        for (int i = index; i < array.length - 1; i++) {
+        for (int i = index; i < listSize; i++) {
             array[index] = array[index + 1];
             index++;
         }
-        int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
-                count++;
-                if (count > 10) {
-                    String[] temp = array;
-                    this.array = new String[array.length / 2];
-                    System.arraycopy(temp, 0, array, 0, array.length);
-                }
-            }
+        if (listSize * 2 < array.length) {
+            decreaseArray();
         }
-        fillingArray--;
+        listSize--;
     }
 
     /**
@@ -75,7 +58,7 @@ public class ArrayList1 implements List1 {
      */
     @Override
     public int size() {
-        return fillingArray;
+        return listSize;
     }
 
     /**
@@ -87,9 +70,15 @@ public class ArrayList1 implements List1 {
         array[index] = data;
     }
 
-    public void print() {
-        for (String s : array) {
-            System.out.println(s);
-        }
+    private void createNewArray() {
+        String[] temp = array;
+        this.array = new String[temp.length * 2];
+        System.arraycopy(temp, 0, array, 0, temp.length);
+    }
+
+    public void decreaseArray() {
+        String[] temp = array;
+        this.array = new String[array.length - 10];
+        System.arraycopy(temp, 0, array, 0, array.length);
     }
 }
